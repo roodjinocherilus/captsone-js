@@ -1,29 +1,29 @@
 import ShowsList from './fetchMovie.js';
 
-const id = 1;
 const show = new ShowsList();
-const result = show.getShow(id);
-
 
 const cardContainer = document.getElementById('card-container');
-const displayCards = () => {
-  cardContainer.innerHTML = `
+const displayCards = (response) => {
+  cardContainer.innerHTML += `
   <div class="items">
     <div class="row-1">
-      <img src="https://source.unsplash.com/collection/sun/200x150" alt="movie posture">
+      <img src="${response.image.medium}" alt="movie posture">
     </div>
     <div class="row-2">
-      <h3 class="title-movie">First movie</h3>
+      <h3 class="title-movie">${response.name}</h3>
       <p class="flex-col"><span class="heart-icon">&#9825;</span> 5 likes</p>
     </div>
     <div class="row-3 flex-col">
-      <button class="comment-btn">Comment</button>
-      <button class="comment-btn">Reservations</button>
+      <button class="comment-btn" onclick="window.location='#';">Comment</button>
+      <button class="comment-btn" onclick="window.location='#';">Watch</button>
     </div>
   </div>`;
 };
-const renderCards = () => {
-  document.addEventListener('DOMContentLoaded', displayCards);
+
+const displayShow = () => {
+  for (let id = 1; id <= 6; id += 1) {
+    show.getShow(id).then((response) => displayCards(response));
+  }
 };
 
-export default renderCards;
+export default displayShow;

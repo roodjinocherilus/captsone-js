@@ -1,16 +1,12 @@
-class ShowsList {
+export default class ShowsList {
   constructor() {
     this.url = ' https://api.tvmaze.com/shows/';
-    this.img = '';
+    this.imgUrl = ' ';
   }
 
-  getShow = (id) => {
-    fetch(`${this.url}${id}`)
-      .then((response) => response.json())
-      .then((jsonData) => {
-        const data = jsonData.image.medium;
-        console.log(data);
-      });
-  };
+  getShow = async (id) => {
+    const response = await fetch(`${this.url}${id}`);
+    const show = await response.json();
+    return show;
+  }
 }
-export default ShowsList;

@@ -1,5 +1,7 @@
 // import _ from 'lodash';
 import './style.css';
-import renderCards from './modules/load-homepage.js';
+import displayShow from './modules/load-homepage.js';
+import createAPP from './modules/fetch-comment.js';
 
-renderCards();
+createAPP();
+displayShow();
