@@ -115,7 +115,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _modules_load_homepage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/load-homepage.js */ \"./src/modules/load-homepage.js\");\n// import _ from 'lodash';\n\n\n\n(0,_modules_load_homepage_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n\n\n//# sourceURL=webpack://webpack-demo/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _modules_load_homepage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/load-homepage.js */ \"./src/modules/load-homepage.js\");\n/* harmony import */ var _modules_popup_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/popup.js */ \"./src/modules/popup.js\");\n// import _ from 'lodash';\n\n\n\n\n\n\n(0,_modules_load_homepage_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n\nconst popupWindow = document.querySelectorAll('.items');\npopupWindow.addEventListener('click', () =>{\n(0,_modules_popup_js__WEBPACK_IMPORTED_MODULE_2__.openpopup)();\n});\n\n\n\n//# sourceURL=webpack://webpack-demo/./src/index.js?");
 
 /***/ }),
 
@@ -136,6 +136,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _fetchMovie_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./fetchMovie.js */ \"./src/modules/fetchMovie.js\");\n\n\nconst show = new _fetchMovie_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\n\nconst cardContainer = document.getElementById('card-container');\nconst displayCards = (response) => {\n  cardContainer.innerHTML += `\n  <div class=\"items\">\n    <div class=\"row-1\">\n      <img src=\"${response.image.medium}\" alt=\"movie posture\">\n    </div>\n    <div class=\"row-2\">\n      <h3 class=\"title-movie\">${response.name}</h3>\n      <p class=\"flex-col\"><span class=\"heart-icon\">&#9825;</span> 5 likes</p>\n    </div>\n    <div class=\"row-3 flex-col\">\n      <button class=\"comment-btn\" onclick=\"window.location='#';\">Comment</button>\n      <button class=\"comment-btn\" onclick=\"window.location='#';\">Watch</button>\n    </div>\n  </div>`;\n};\n\nconst displayShow = () => {\n  for (let id = 1; id <= 6; id += 1) {\n    show.getShow(id).then((response) => displayCards(response));\n  }\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayShow);\n\n//# sourceURL=webpack://webpack-demo/./src/modules/load-homepage.js?");
+
+/***/ }),
+
+/***/ "./src/modules/popup.js":
+/*!******************************!*\
+  !*** ./src/modules/popup.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"openpopup\": () => (/* binding */ openpopup)\n/* harmony export */ });\n\n\nconst openpopup =()=>{ \n    console.log(\"hello\");\n    const newPopup = document.createElement('div');\n    newPopup.innerHTML = `\n      <div class=\"popup-container\">\n        <h3> title </h3>\n        <div></div>\n      </div>\n      `;\n      \n    \n  \n\n}\n\n//# sourceURL=webpack://webpack-demo/./src/modules/popup.js?");
 
 /***/ })
 
