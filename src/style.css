@@ -72,3 +72,13 @@ main {
   margin: 0.2rem;
   padding: 0.1rem;
 }
+
+.heart-icon {
+  font-size: 1rem;
+  color: red;
+}
+
+button.heart {
+  all: unset;
+  cursor: pointer;
+}

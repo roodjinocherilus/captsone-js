@@ -1,29 +1,43 @@
 import ShowsList from './fetchMovie.js';
+// import postLike from './postLike.js';
 
 const show = new ShowsList();
 
 const cardContainer = document.getElementById('card-container');
-const displayCards = (response) => {
+const displayCards = (response, id) => {
   cardContainer.innerHTML += `
-  <div class="items">
+  <section class="items">
     <div class="row-1">
       <img src="${response.image.medium}" alt="movie posture">
     </div>
     <div class="row-2">
       <h3 class="title-movie">${response.name}</h3>
-      <p class="flex-col"><span class="heart-icon">&#9825;</span> 5 likes</p>
+      <p class="flex-col">
+        <button class="heart">
+          <i class="fa fa-heart heart-icon data-id="${id}"></i>
+        </button ><span class=like-count>0</span> likes
+      </p>
     </div>
     <div class="row-3 flex-col">
       <button class="comment-btn" onclick="window.location='#';">Comment</button>
       <button class="comment-btn" onclick="window.location='#';">Watch</button>
     </div>
-  </div>`;
+  </section>`;
 };
 
 const displayShow = () => {
   for (let id = 1; id <= 6; id += 1) {
-    show.getShow(id).then((response) => displayCards(response));
+    show.getShow(id).then((response) => displayCards(response, id));
   }
 };
 
+document.body.addEventListener('click', async (e) => {
+  if (e.target.parentElement.classList.contains('heart')) {
+    e.preventDefault();
+    const likeContainer = e.target.parentElement.parentElement.children[1];
+    const previousLikes = Number(likeContainer.innerText);
+    const newLikes = previousLikes + 1;
+    likeContainer.innerText = newLikes;
+  }
+});
 export default displayShow;
