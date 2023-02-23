@@ -1,5 +1,5 @@
 // import _ from 'lodash';
 import './style.css';
-import displayShow from './modules/load-homepage.js';
+import displayShow from './modules/homePage/load-homepage.js';
 
 displayShow();

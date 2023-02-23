@@ -1,6 +1,5 @@
 import ShowsList from './fetchMovie.js';
 import postLike from './postLike.js';
-// import postLike from './postLike.js';
 
 const show = new ShowsList();
 
@@ -16,7 +15,7 @@ const displayCards = (response) => {
       <p class="flex-col">
         <button class="heart">
           <i class="fa fa-heart heart-icon" id="${response.id}"></i>
-        </button ><span class=like-count>0</span> likes
+        </button><span class=like-count>0</span>likes
       </p>
     </div>
     <div class="row-3 flex-col">
@@ -41,5 +40,10 @@ document.body.addEventListener('click', async (e) => {
     const newLikes = previousLikes + 1;
     likeContainer.innerText = newLikes;
   }
+});
+
+const Counter = document.getElementById('counter');
+window.addEventListener('load', (e) => {
+  e.preventDefault();
 });
 export default displayShow;
