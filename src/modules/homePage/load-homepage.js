@@ -1,6 +1,7 @@
 import ShowsList from './fetchMovie.js';
 import postLike from './postLike.js';
-import countItem from './CountItem.js';
+
+const countItem = require('./CountItem.js');
 
 const show = new ShowsList();
 
@@ -45,4 +46,4 @@ document.body.addEventListener('click', async (e) => {
   }
 });
 
-export default displayShow;
+export { displayShow, displayCards };
