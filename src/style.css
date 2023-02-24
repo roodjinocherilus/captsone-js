@@ -72,3 +72,29 @@ main {
   margin: 0.2rem;
   padding: 0.1rem;
 }
+
+.heart-icon {
+  font-size: 1rem;
+  color: red;
+}
+
+button.heart {
+  all: unset;
+  cursor: pointer;
+}
+
+.total-count {
+  padding-left: 85%;
+}
+
+.count-value {
+  border: 2px solid;
+  padding: 0.2rem;
+  border-radius: 1rem;
+  padding-left: 1.3rem;
+}
+
+span#counter {
+  font-weight: bolder;
+  font-size: 1rem;
+}
