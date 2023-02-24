@@ -100,8 +100,6 @@ span#counter {
 }
 
 
-
-
 /* Pop Up */
 
 .modal-backdrop {
@@ -122,6 +120,10 @@ span#counter {
   background-color: white;
   padding: 1rem;
   z-index: 101;
+  width: 500px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal h2 {
@@ -129,8 +131,7 @@ span#counter {
 }
 
 .modal form {
-  display: flex;
-  flex-direction: column;
+ 
   gap: 1rem;
 }
 
@@ -141,4 +142,10 @@ span#counter {
 
 .modal button[type="submit"] {
   align-self: flex-end;
+}
+
+
+.img-movie {
+  width: 50%;
+  height: 100%;
 }

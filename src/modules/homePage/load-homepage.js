@@ -23,8 +23,8 @@ const displayCards = (response) => {
     </p>
   </div>
   <div class="row-3 flex-col">
-    <button class="comment-btn" onclick="window.location='#';">Comment</button>
-    <button class="comment-btn" onclick="window.location='#';">Watch</button>
+    <button class="comment-btn"  value="${response.id}" onclick="window.location='#';">Comment</button>
+    <button class="watch-btn"  onclick="window.location='#';">Watch</button>
   </div>`;
   cardContainer.appendChild(section);
 };
@@ -46,13 +46,19 @@ document.body.addEventListener('click', async (e) => {
   }
 });
 
-window.addEventListener('load', () => {
-  // event when all content finush loading
-  document.querySelectorAll('.comment-btn').forEach((btn) => {
-     btn.addEventListener('click', () => {
-      showModal();
-     });
-   });  
- });
+// event listener for the comment button afer everything has been displayed 
+document.body.addEventListener('click', (e) => {
+  if (e.target.classList.contains('comment-btn')) {
+    e.preventDefault();
+    console.log(e.target.value);
+    showModal(e.target.value);
+    show.getShow(e.target.value).then((response) => showModal(response));
+  }
+});
+
+
+
+
+
 
 export default displayShow;

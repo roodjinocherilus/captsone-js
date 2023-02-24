@@ -1,29 +1,30 @@
-const showModal = () => {
-    const modalContainer = document.getElementById('modal-container');
-    
+import ShowsList from './fetchMovie.js';
+const show = new ShowsList();
+
+export const checkImage = (image) => {
+    if (image) {
+        return image.original;
+    }
+};
+
+const showModal = (movie) => {
+    const modalContainer = document.getElementById('modal-container');  
+    let imageCK = checkImage(movie.image);
+    checkImage(movie.image);
+
     // Create the modal backdrop
     const backdrop = document.createElement('div');
     backdrop.classList.add('modal-backdrop');
-    
+    backdrop.id = 'modal-backdrop';
+
     // Create the modal content
     const modal = document.createElement('div');
     modal.classList.add('modal');
     modal.innerHTML = `
-      <h2>Add a comment</h2>
-      <form>
-        <textarea placeholder="Enter your comment"></textarea>
-        <button type="submit">Submit</button>
-      </form>
+      <h2>${movie.name}</h2>
+        <img class="img-movie" src="${imageCK}" alt="movie posture">
+    ${movie.summary}
     `;
-    
-    // Add event listener to the form submit button
-    const form = modal.querySelector('form');
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const comment = form.querySelector('textarea').value;
-      // Do something with the comment, e.g. send it to a server
-      closeModal();
-    });
     
     // Append the modal to the container and show the backdrop
     modalContainer.appendChild(backdrop);
