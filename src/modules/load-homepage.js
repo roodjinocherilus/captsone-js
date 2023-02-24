@@ -1,4 +1,5 @@
 import ShowsList from './fetchMovie.js';
+import renderReservePopup from './homePage/load-reserve-pop.js';
 
 const show = new ShowsList();
 
@@ -25,7 +26,6 @@ const displayShow = () => {
     show.getShow(id).then((response) => displayCards(response));
   }
 };
-
 
 document.body.addEventListener('click', async (e) => {
   if (e.target.classList.contains('reserve-btn')) {

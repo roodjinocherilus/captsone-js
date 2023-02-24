@@ -99,14 +99,15 @@ span#counter {
   font-size: 1rem;
 }
 
-.popup-reserve-page{
+.popup-reserve-page {
   position: fixed;
   background-color: rgb(220, 247, 238);
   padding: 0 0 0 5vw;
   margin: 0 0 0 3vw;
 }
-.detail{
+
+.detail {
   display: inline-block;
 }
 
-.title{ margin: 0;}
+.title { margin: 0; }
