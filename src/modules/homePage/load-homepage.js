@@ -46,19 +46,13 @@ document.body.addEventListener('click', async (e) => {
   }
 });
 
-// event listener for the comment button afer everything has been displayed 
+// event listener for the comment button afer everything has been displayed
 document.body.addEventListener('click', (e) => {
   if (e.target.classList.contains('comment-btn')) {
     e.preventDefault();
-    console.log(e.target.value);
     showModal(e.target.value);
     show.getShow(e.target.value).then((response) => showModal(response));
   }
 });
-
-
-
-
-
 
 export default displayShow;

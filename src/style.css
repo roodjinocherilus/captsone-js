@@ -131,7 +131,6 @@ span#counter {
 }
 
 .modal form {
- 
   gap: 1rem;
 }
 
@@ -143,7 +142,6 @@ span#counter {
 .modal button[type="submit"] {
   align-self: flex-end;
 }
-
 
 .img-movie {
   width: 50%;
