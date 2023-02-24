@@ -1,6 +1,7 @@
 import ShowsList from './fetchMovie.js';
 import postLike from './postLike.js';
 import countItem from './CountItem.js';
+import renderReservePopup from './load-reserve-pop.js';
 
 const show = new ShowsList();
 
@@ -21,13 +22,12 @@ const displayCards = (response) => {
       </button><span class=like-count>0</span>likes
     </p>
   </div>
-  <div class="row-3 flex-col">
-    <button class="comment-btn" onclick="window.location='#';">Comment</button>
-    <button class="comment-btn" onclick="window.location='#';">Watch</button>
+  <div class="row-3 flex-col" id="${response.id}">
+    <button class="comment-btn" id="reserve-btn">Comment</button>
+    <button class="reserve-btn" id="reserve-btn">Reserve</button>
   </div>`;
   cardContainer.appendChild(section);
 };
-
 const displayShow = () => {
   for (let id = 1; id <= 9; id += 1) {
     show.getShow(id).then((response) => displayCards(response));
@@ -45,4 +45,9 @@ document.body.addEventListener('click', async (e) => {
   }
 });
 
+document.body.addEventListener('click', async (e) => {
+  if (e.target.classList.contains('reserve-btn')) {
+    renderReservePopup(e.target.parentElement.id);
+  }
+});
 export default displayShow;
