@@ -1,6 +1,7 @@
 import ShowsList from './fetchMovie.js';
 import postLike from './postLike.js';
 import countItem from './CountItem.js';
+import showModal from './popup.js';
 
 const show = new ShowsList();
 
@@ -22,8 +23,8 @@ const displayCards = (response) => {
     </p>
   </div>
   <div class="row-3 flex-col">
-    <button class="comment-btn" onclick="window.location='#';">Comment</button>
-    <button class="comment-btn" onclick="window.location='#';">Watch</button>
+    <button class="comment-btn"  value="${response.id}" onclick="window.location='#';">Comment</button>
+    <button class="watch-btn"  onclick="window.location='#';">Watch</button>
   </div>`;
   cardContainer.appendChild(section);
 };
@@ -42,6 +43,15 @@ document.body.addEventListener('click', async (e) => {
     const previousLikes = Number(likeContainer.innerText);
     const newLikes = previousLikes + 1;
     likeContainer.innerText = newLikes;
+  }
+});
+
+// event listener for the comment button afer everything has been displayed
+document.body.addEventListener('click', (e) => {
+  if (e.target.classList.contains('comment-btn')) {
+    e.preventDefault();
+    showModal(e.target.value);
+    show.getShow(e.target.value).then((response) => showModal(response));
   }
 });
 
