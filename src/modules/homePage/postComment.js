@@ -14,9 +14,7 @@ const postComment = async (id, Comments) => {
       comment: Comments,
     }),
   });
-  console.log(Comments);
   const response = request;
-  console.log(response);
   return response;
 };
 
@@ -26,11 +24,10 @@ export const getComments = async (id) => {
     method: 'GET',
     headers: {
       'Content-type': 'application/json',
-    }
-    
+    },
+
   });
-  let result = await request.json();
-  console.log(result);
+  const result = await request.json();
   return result;
 };
 

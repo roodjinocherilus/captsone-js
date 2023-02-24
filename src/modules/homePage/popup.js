@@ -1,4 +1,4 @@
-import postComment, { getComments } from "./postComment.js";
+import postComment, { getComments } from './postComment.js';
 
 export const checkImage = (image) => { // eslint-disable-line
   if (image) {
@@ -43,21 +43,21 @@ const showModal = (movie) => {
 
     `;
 
-    // Get the comments for the movie
-    getComments(movie.id).then((response) => {
-        response.forEach((element) =>  {
-        const commentContainer = modal.querySelector('.comments');
-        const comment = document.createElement('div');
-        comment.classList.add('comment');
-        comment.innerHTML = `
+  // Get the comments for the movie
+  getComments(movie.id).then((response) => {
+    response.forEach((element) => {
+      const commentContainer = modal.querySelector('.comments');
+      const comment = document.createElement('div');
+      comment.classList.add('comment');
+      comment.innerHTML = `
         <p>${element.creation_date}</p>
         <p>${element.username}</p>
         <p>${element.comment}</p>
         `;
-        commentContainer.appendChild(comment);
+      commentContainer.appendChild(comment);
     });
-});
-     // Add event listener to the form submit button
+  });
+  // Add event listener to the form submit button
   const form = modal.querySelector('form');
   form.addEventListener('submit', (event) => {
     event.preventDefault();
