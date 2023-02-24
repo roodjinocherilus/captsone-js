@@ -1,6 +1,7 @@
 import ShowsList from './fetchMovie.js';
 import postLike from './postLike.js';
 import countItem from './CountItem.js';
+import showModal from './popup.js';
 
 const show = new ShowsList();
 
@@ -44,5 +45,14 @@ document.body.addEventListener('click', async (e) => {
     likeContainer.innerText = newLikes;
   }
 });
+
+window.addEventListener('load', () => {
+  // event when all content finush loading
+  document.querySelectorAll('.comment-btn').forEach((btn) => {
+     btn.addEventListener('click', () => {
+      showModal();
+     });
+   });  
+ });
 
 export default displayShow;
