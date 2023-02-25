@@ -14,6 +14,8 @@ const closeModal = () => {
   const backdrop = document.querySelector('.modal-backdrop');
   modalContainer.removeChild(modal);
   modalContainer.removeChild(backdrop);
+  
+  
 };
 
 const showModal = (movie) => {
