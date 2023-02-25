@@ -105,10 +105,15 @@ span#counter {
   position: fixed;
   background-color: rgb(220, 247, 238);
   padding: 0 0 0 5vw;
-  margin: 0 10vw;
+  margin: 0 22vw;
   overflow-y: scroll;
   height: 90%;
-  width: 60%;
+  width: 50%;
+}
+
+.popup-reserve-page img {
+  display: block;
+  margin: 0 auto 0 auto;
 }
 
 .detail {

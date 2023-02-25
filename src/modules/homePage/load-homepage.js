@@ -7,7 +7,7 @@ import showModal from '../comment/popup.js';
 const show = new ShowsList();
 
 const cardContainer = document.getElementById('card-container');
-const displayCards = (response) => {
+const displayCards = async (response) => {
   const section = document.createElement('section');
   section.classList.add('items');
   countItem();
