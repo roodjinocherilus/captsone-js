@@ -33,10 +33,10 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [Awesome books] <a name="about-project"></a>
+# 📖 [Movies] <a name="about-project"></a>
 
 
-**WebPack and Linters Template** This is a template Repository for webpack project with Linters pre-installed
+**Javascript Capstone Project** This is our javascript capstone project a movie listing app that uses the TVMaze and api and microversers Involvment API
 
 ## 🛠 Built With <a name="built-with"></a>
 - HTML
@@ -50,9 +50,9 @@
 
 ### Key Features <a name="key-features"></a>
 
-- **[Webpack pre-installed]**
-- **[Linters Pre-installed]**
-- **Just create a Repository from the template and we are good to go]**
+- **[List movies fromt the api]**
+- **[show and add comments and likes]**
+- **[ Show and add reserversations]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -84,10 +84,10 @@ In order to run this project you need:
 Clone this repository to your desired folder:
 
 - Go to this repo and copy the project link
-        https://github.com/roodjinocherilus/Template-Webpack-Linters.git
-- Open your terminal and clone the repo with this command "git clone https:https://github.com/roodjinocherilus/Template-Webpack-Linters.git"
+        https://github.com/roodjinocherilus/captsone-js
+- Open your terminal and clone the repo with this command "https://github.com/roodjinocherilus/captsone-js.git"
 - Now, you have a copy on your pc. 
--or You can just create a Repository from the Template
+
 
 
 ### Install
@@ -122,8 +122,14 @@ Github Pages
 👤 **Roodjino Cherilus**
 
 - GitHub: [@roodjinocherilus](https://github.com/roodjinocherilus)
-- Twitter: [@roodjinocherilus](https://twitter.com/roodjinocherilus)
-- LinkedIn: [LinkedIn](https://github.com/roodjinocherilus)
+
+👤 **RFeven Seyfu**
+
+- GitHub: [@FevenSeyfu](https://github.com/FevenSeyfu)
+
+👤 **Eldon Ratzlaff**
+
+- GitHub: [@Eldonratzlaff](https://github.com/Eldonratzlaff)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -132,7 +138,7 @@ Github Pages
 ## 🔭 Future Features <a name="future-features"></a>
 
 - [ ] **[The project will be stylized]**
-- [ ] **[A navigator bar will be added]**
+- [ ] **[An improved ux ]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -142,7 +148,7 @@ Github Pages
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/roodjinocherilus/Awesome/issues).
+Feel free to check the [issues page](https://github.com/roodjinocherilus/captsone-js).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -150,7 +156,6 @@ Feel free to check the [issues page](https://github.com/roodjinocherilus/Awesome
 
 ## ⭐️ Show your support <a name="support"></a>
 
-> Write a message to encourage readers to support your project
 If you like this project give a ⭐️ or send us a message. We will apreciate
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -159,7 +164,7 @@ If you like this project give a ⭐️ or send us a message. We will apreciate
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
 
-I would like to thank to Microverse for the inspiration to be better every day.
+we would like to thank to Microverse for the inspiration to be better every day.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
