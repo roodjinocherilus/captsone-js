@@ -8,6 +8,7 @@ import getFilteredLikes from './getLikes.js';
 const show = new ShowsList();
 
 const cardContainer = document.getElementById('card-container');
+
 const displayCards = async () => {
   for (let id = 1; id < 7; id += 1) {
     show.getShow(id).then(async (response) => {
