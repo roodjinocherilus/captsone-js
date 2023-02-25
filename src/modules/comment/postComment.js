@@ -40,12 +40,9 @@ export const getComments = async (id) => {
     },
   });
   const result = await request.json();
-  const sortedComments = result.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
-  const reversedComments = sortedComments.slice().reverse();
+  const sortComment = result.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
+  const reversedComments = sortComment.slice().reverse();
   return reversedComments;
 };
 
-
-
 export default postComment;
-

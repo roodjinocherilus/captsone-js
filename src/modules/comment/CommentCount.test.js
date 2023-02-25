@@ -1,4 +1,4 @@
-const CommentCount = require('./CommentCount');
+const CommentCount = require('./CommentCount.js');
 
 describe('CommentCount', () => {
   beforeEach(() => {
@@ -28,6 +28,6 @@ describe('CommentCount', () => {
   test('returns NaN if the total comments element is not found', () => {
     document.body.innerHTML = '<div></div>';
     const count = CommentCount();
-    expect(isNaN(count)).toBe(true);
+    expect(Number.isNaN(count)).toBe(true);
   });
 });
