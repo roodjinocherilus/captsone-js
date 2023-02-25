@@ -6,7 +6,6 @@ import renderReservePopup from './load-reserve-pop.js';
 
 import showModal from './popup.js';
 
-
 const show = new ShowsList();
 
 const cardContainer = document.getElementById('card-container');
@@ -51,7 +50,6 @@ document.body.addEventListener('click', async (e) => {
   }
 });
 
-
 document.body.addEventListener('click', async (e) => {
   if (e.target.classList.contains('reserve-btn')) {
     renderReservePopup(e.target.parentElement.id);
@@ -66,6 +64,5 @@ document.body.addEventListener('click', (e) => {
     show.getShow(e.target.value).then((response) => showModal(response));
   }
 });
-
 
 export default displayShow;
