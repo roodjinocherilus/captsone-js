@@ -117,17 +117,16 @@ span#counter {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  padding: 1rem;
   z-index: 101;
   width: 300px;
+
   /* height: auto; */
   display: flex;
   flex-direction: column;
   padding: 1rem 5rem;
   overflow-y: scroll;
   height: 100%;
-  }
-
+}
 
 .modal h2 {
   margin-top: 0;
@@ -141,8 +140,8 @@ span#counter {
   width: 100%;
   height: 100px;
   resize: none;
-
 }
+
 .divider {
   border: 1px solid;
   margin: 1rem 0;
@@ -156,6 +155,7 @@ span#counter {
   font-weight: bold;
   cursor: pointer;
 }
+
 /* Hover effect on the submit button */
 .modal button[type="submit"]:hover {
   background-color: #e5e5e5;
@@ -168,23 +168,20 @@ span#counter {
 }
 
 /* style comment section */
-.comment{
+.comment {
   display: flex;
   flex-direction: column;
-  align-items: left;
 }
 
 /* child inside comment section */
-.comment > h3 {
- 
-}
+
 .comment > p {
   margin-top: -5px;
-  font-size:1rem;
-
+  font-size: 1rem;
 }
+
 .comment > .date {
-margin-top: -15px;
+  margin-top: -15px;
   font-size: 0.8rem;
   color: grey;
 }

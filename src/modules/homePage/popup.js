@@ -14,7 +14,6 @@ const closeModal = () => {
   modalContainer.removeChild(backdrop);
 };
 
-
 const showModal = (movie) => {
   const modalContainer = document.getElementById('modal-container');
   const imageCK = checkImage(movie.image);
@@ -77,6 +76,3 @@ const showModal = (movie) => {
 };
 
 export default showModal;
-
-
-
