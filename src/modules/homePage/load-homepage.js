@@ -1,7 +1,11 @@
 import ShowsList from './fetchMovie.js';
 import postLike from './postLike.js';
 import countItem from './CountItem.js';
+
 import renderReservePopup from './load-reserve-pop.js';
+
+import showModal from './popup.js';
+
 
 const show = new ShowsList();
 
@@ -22,9 +26,11 @@ const displayCards = (response) => {
       </button><span class=like-count>0</span>likes
     </p>
   </div>
-  <div class="row-3 flex-col" id="${response.id}">
-    <button class="comment-btn" id="reserve-btn">Comment</button>
-    <button class="reserve-btn" id="reserve-btn">Reserve</button>
+
+  <div class="row-3 flex-col">
+    <button class="comment-btn"  value="${response.id}" onclick="window.location='#';">Comment</button>
+    <button class="watch-btn"  onclick="window.location='#';">Watch</button>
+
   </div>`;
   cardContainer.appendChild(section);
 };
@@ -45,9 +51,21 @@ document.body.addEventListener('click', async (e) => {
   }
 });
 
+
 document.body.addEventListener('click', async (e) => {
   if (e.target.classList.contains('reserve-btn')) {
     renderReservePopup(e.target.parentElement.id);
   }
 });
+
+// event listener for the comment button afer everything has been displayed
+document.body.addEventListener('click', (e) => {
+  if (e.target.classList.contains('comment-btn')) {
+    e.preventDefault();
+    showModal(e.target.value);
+    show.getShow(e.target.value).then((response) => showModal(response));
+  }
+});
+
+
 export default displayShow;
