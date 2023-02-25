@@ -101,6 +101,17 @@ const showModal = (movie) => {
       });
     });
 
+    // Add close button
+const closeButton = document.createElement('button');
+closeButton.classList.add('close-button');
+closeButton.innerHTML = 'X';
+modal.appendChild(closeButton);
+
+// Add event listener to close button
+closeButton.addEventListener('click', () => {
+  closeModal();
+});
+
 
   // Append the modal to the container and show the backdrop
   modalContainer.appendChild(backdrop);
