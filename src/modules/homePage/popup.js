@@ -32,6 +32,7 @@ const showModal = (movie) => {
         <img class="img-movie" src="${imageCK}" alt="movie posture">
     ${movie.summary}
 
+    <div class="divider"></div>
     <h2>Add a comment</h2>
     <form>
       <textarea placeholder="Enter your comment"></textarea>
@@ -40,7 +41,6 @@ const showModal = (movie) => {
 
     <div class="comments">
     </div>
-
     `;
 
   // Get the comments for the movie
@@ -50,8 +50,8 @@ const showModal = (movie) => {
       const comment = document.createElement('div');
       comment.classList.add('comment');
       comment.innerHTML = `
-        <p>${element.creation_date}</p>
-        <p>${element.username}</p>
+      <h3>${element.username}</h3>
+        <p class="date">${element.creation_date}</p>
         <p>${element.comment}</p>
         `;
       commentContainer.appendChild(comment);
