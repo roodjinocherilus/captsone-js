@@ -33,7 +33,6 @@ const displayCards = async () => {
         </div>`;
       cardContainer.appendChild(section);
     });
-
   }
   window.addEventListener('mouseover', async (e) => {
     e.preventDefault();
