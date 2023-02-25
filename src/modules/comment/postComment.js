@@ -18,6 +18,19 @@ const postComment = async (id, Comments) => {
   return response;
 };
 
+// export const getComments = async (id) => {
+//   const getUrl = `${url}${appID}/comments?item_id=${id}`;
+//   const request = await fetch(getUrl, {
+//     method: 'GET',
+//     headers: {
+//       'Content-type': 'application/json',
+//     },
+
+//   });
+//   const result = await request.json();
+//   return result;
+// };
+
 export const getComments = async (id) => {
   const getUrl = `${url}${appID}/comments?item_id=${id}`;
   const request = await fetch(getUrl, {
@@ -25,10 +38,11 @@ export const getComments = async (id) => {
     headers: {
       'Content-type': 'application/json',
     },
-
   });
   const result = await request.json();
-  return result;
+  const sortComment = result.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
+  const reversedComments = sortComment.slice().reverse();
+  return reversedComments;
 };
 
 export default postComment;

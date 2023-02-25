@@ -220,3 +220,14 @@ span#counter {
   font-size: 0.8rem;
   color: grey;
 }
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  font-size: 30px;
+  color: red;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
