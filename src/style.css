@@ -224,8 +224,8 @@ span#counter {
 
 .close-button {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 20px;
+  right: 15px;
   font-size: 20px;
   background-color: transparent;
   border: none;

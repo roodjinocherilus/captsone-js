@@ -7,6 +7,7 @@ export const checkImage = (image) => { // eslint-disable-line
   }
 };
 
+  
 const closeModal = () => {
   const modalContainer = document.getElementById('modal-container');
   const modal = document.querySelector('.modal');
@@ -19,11 +20,6 @@ const showModal = (movie) => {
   const modalContainer = document.getElementById('modal-container');
   const imageCK = checkImage(movie.image);
   checkImage(movie.image);
-
-  // Create the modal backdrop
-  const backdrop = document.createElement('div');
-  backdrop.classList.add('modal-backdrop');
-  backdrop.id = 'modal-backdrop';
 
   // Create the modal content
   const modal = document.createElement('div');
@@ -70,8 +66,9 @@ const showModal = (movie) => {
       });
     });
 
-    // Add event listener to the form submit button
+
     const form = modal.querySelector('form');
+    // Add event listener to the form submit button
     // form.addEventListener('submit', (event) => {
     //   event.preventDefault();
     //   const comment = form.querySelector('textarea').value;
@@ -112,6 +109,10 @@ closeButton.addEventListener('click', () => {
   closeModal();
 });
 
+ // Create the modal backdrop
+ const backdrop = document.createElement('div');
+ backdrop.classList.add('modal-backdrop');
+ backdrop.id = 'modal-backdrop';
 
   // Append the modal to the container and show the backdrop
   modalContainer.appendChild(backdrop);
@@ -122,5 +123,6 @@ closeButton.addEventListener('click', () => {
     closeModal();
   });
 };
+
 
 export default showModal;
