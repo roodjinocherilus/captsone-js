@@ -28,7 +28,7 @@ const displayCards = (response) => {
 
   <div class="row-3 flex-col">
     <button class="comment-btn"  value="${response.id}" onclick="window.location='#';">Comment</button>
-    <button class="watch-btn"  onclick="window.location='#';">Watch</button>
+    <button class="watch-btn reserve-btn"  onclick="window.location='#';">Reserve</button>
 
   </div>`;
   cardContainer.appendChild(section);
