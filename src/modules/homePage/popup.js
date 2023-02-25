@@ -1,3 +1,5 @@
+import postComment, { getComments } from './postComment.js';
+
 export const checkImage = (image) => { // eslint-disable-line
   if (image) {
     return image.original;
@@ -29,8 +31,40 @@ const showModal = (movie) => {
       <h2>${movie.name}</h2>
         <img class="img-movie" src="${imageCK}" alt="movie posture">
     ${movie.summary}
+
+    <h2>Add a comment</h2>
+    <form>
+      <textarea placeholder="Enter your comment"></textarea>
+      <button type="submit">Submit</button>
+    </form>
+
+    <div class="comments">
+    </div>
+
     `;
 
+  // Get the comments for the movie
+  getComments(movie.id).then((response) => {
+    response.forEach((element) => {
+      const commentContainer = modal.querySelector('.comments');
+      const comment = document.createElement('div');
+      comment.classList.add('comment');
+      comment.innerHTML = `
+        <p>${element.creation_date}</p>
+        <p>${element.username}</p>
+        <p>${element.comment}</p>
+        `;
+      commentContainer.appendChild(comment);
+    });
+  });
+  // Add event listener to the form submit button
+  const form = modal.querySelector('form');
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const comment = form.querySelector('textarea').value;
+    postComment(movie.id, comment);
+    form.querySelector('textarea').value = '';
+  });
   // Append the modal to the container and show the backdrop
   modalContainer.appendChild(backdrop);
   modalContainer.appendChild(modal);
