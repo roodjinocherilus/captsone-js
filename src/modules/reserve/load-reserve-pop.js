@@ -1,6 +1,7 @@
 import ShowDetail from '../homePage/fetchMovie.js';
 import postReservation from './Postreserve.js';
 import getReserverations from './getReserverations.js';
+import countReserve from './countreserve.js';
 
 const show = new ShowDetail();
 const reservePopup = document.getElementById('reserve-container');
@@ -11,6 +12,7 @@ const renderReservePopup = (showName) => {
   reservePopup.classList.replace('hide', 'show');
   show.getShow(showName).then(async (response) => {
     // get reservations
+    countReserve(response.id);
     const reservations = await getReserverations(response.id);
     reservations.forEach((reservation) => {
       reservePopup.innerHTML += `
