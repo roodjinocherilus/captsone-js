@@ -147,116 +147,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var loda
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"checkImage\": () => (/* binding */ checkImage),\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _postComment_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./postComment.js */ \"./src/modules/comment/postComment.js\");\n\n\nconst checkImage = (image) => { // eslint-disable-line\n  if (image) {\n    return image.original;\n  }\n};\n\nconst closeModal = () => {\n  const modalContainer = document.getElementById('modal-container');\n  const modal = document.querySelector('.modal');\n  const backdrop = document.querySelector('.modal-backdrop');\n  modalContainer.removeChild(modal);\n  modalContainer.removeChild(backdrop);\n};\n\nconst showModal = (movie) => {\n  const modalContainer = document.getElementById('modal-container');\n  const imageCK = checkImage(movie.image);\n  checkImage(movie.image);\n\n  // Create the modal content\n  const modal = document.createElement('div');\n  modal.classList.add('modal');\n  modal.id = 'items';\n  modal.innerHTML = `\n      <h2>${movie.name}</h2>\n        <img class=\"img-movie\" src=\"${imageCK}\" alt=\"movie posture\">\n    ${movie.summary}\n    <div class=\"divider\"></div>\n    <h2>Add a comment</h2>\n    <form>\n      <textarea placeholder=\"Enter your comment\"></textarea>\n      <button type=\"submit\" id=\"btn-reload\">Submit</button>\n    </form>\n\n    <h2 class=\"commentCounter\">\n    </h2>\n    `;\n\n  // Get the comments for the movie\n  (0,_postComment_js__WEBPACK_IMPORTED_MODULE_0__.getComments)(movie.id).then((response) => {\n    let totalComments = 0;\n    response.forEach((element) => {\n      totalComments += 1;\n      const commentContainer = modal.querySelector('.comments');\n      const comment = document.createElement('div');\n      comment.classList.add('comment');\n      comment.innerHTML = `\n        <h3>${element.username}</h3>\n          <p class=\"date\">${element.creation_date}</p>\n          <p>${element.comment}</p>\n          `;\n      if (commentContainer) {\n        commentContainer.appendChild(comment);\n      } else {\n        const comments = document.createElement('div');\n        comments.classList.add('comments');\n        comments.appendChild(comment);\n        modal.appendChild(comments);\n      }\n    });\n    // Get the total comment count and display it\n    const commentCountElement = modal.querySelector('.commentCounter');\n    commentCountElement.textContent = `Total comments: ${totalComments}`;\n  });\n\n  const form = modal.querySelector('form');\n\n  form.addEventListener('submit', async (event) => {\n    event.preventDefault();\n    const comment = form.querySelector('textarea').value;\n    await (0,_postComment_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(movie.id, comment);\n    form.querySelector('textarea').value = '';\n    const comments = await (0,_postComment_js__WEBPACK_IMPORTED_MODULE_0__.getComments)(movie.id);\n    const commentContainer = modal.querySelector('.comments');\n    commentContainer.innerHTML = '';\n    comments.forEach((element) => {\n      const comment = document.createElement('div');\n      comment.classList.add('comment');\n      comment.innerHTML = `\n        <h3>${element.username}</h3>\n          <p class=\"date\">${element.creation_date}</p>\n          <p>${element.comment}</p>\n          `;\n      commentContainer.appendChild(comment);\n      modal.querySelector('.commentCounter').textContent = `Total comments: ${comments.length}`;\n    });\n  });\n\n  // Add close button\n  const closeButton = document.createElement('button');\n  closeButton.classList.add('close-button');\n  closeButton.innerHTML = 'X';\n  modal.appendChild(closeButton);\n\n  // Add event listener to close button\n  closeButton.addEventListener('click', () => {\n    closeModal();\n  });\n\n  // Create the modal backdrop\n  const backdrop = document.createElement('div');\n  backdrop.classList.add('modal-backdrop');\n  backdrop.id = 'modal-backdrop';\n\n  // Append the modal to the container and show the backdrop\n  modalContainer.appendChild(backdrop);\n  modalContainer.appendChild(modal);\n\n  // Add event listener to the backdrop to close the modal when clicked\n  backdrop.addEventListener('click', () => {\n    closeModal();\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (showModal);\n\n//# sourceURL=webpack://webpack-demo/./src/modules/comment/popup.js?");
-
-/***/ }),
-
-/***/ "./src/modules/comment/postComment.js":
-/*!********************************************!*\
-  !*** ./src/modules/comment/postComment.js ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__),\n/* harmony export */   \"getComments\": () => (/* binding */ getComments)\n/* harmony export */ });\nconst url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/';\nconst appID = 'MaaGbCwoyJNbaDzXocQW';\nconst appUrl = `${url}${appID}/comments`;\n\nconst postComment = async (id, Comments) => {\n  const request = await fetch(appUrl, {\n    method: 'POST',\n    headers: {\n      'Content-type': 'application/json',\n    },\n    body: JSON.stringify({\n      item_id: id,\n      username: 'user',\n      comment: Comments,\n    }),\n  });\n  const response = request;\n  return response;\n};\n\nconst getComments = async (id) => {\n  const getUrl = `${url}${appID}/comments?item_id=${id}`;\n  const request = await fetch(getUrl, {\n    method: 'GET',\n    headers: {\n      'Content-type': 'application/json',\n    },\n  });\n  const result = await request.json();\n  const sortComment = result.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));\n  const reversedComments = sortComment.slice().reverse();\n  return reversedComments;\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (postComment);\n\n\n//# sourceURL=webpack://webpack-demo/./src/modules/comment/postComment.js?");
-
-/***/ }),
-
-/***/ "./src/modules/homePage/CountItem.js":
-/*!*******************************************!*\
-  !*** ./src/modules/homePage/CountItem.js ***!
-  \*******************************************/
-/***/ ((module) => {
-
-eval("const countItem = () => {\n  const totalItems = document.getElementById('counter');\n  totalItems.innerHTML = document.querySelectorAll('.items').length + 1;\n  return Number(totalItems.innerHTML);\n};\n\nmodule.exports = countItem;\n\n\n//# sourceURL=webpack://webpack-demo/./src/modules/homePage/CountItem.js?");
-
-/***/ }),
-
-/***/ "./src/modules/homePage/fetchMovie.js":
-/*!********************************************!*\
-  !*** ./src/modules/homePage/fetchMovie.js ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ ShowsList)\n/* harmony export */ });\nclass ShowsList {\n  constructor() {\n    this.url = ' https://api.tvmaze.com/shows/';\n    this.imgUrl = ' ';\n  }\n\n  getShow = async (id) => {\n    const response = await fetch(`${this.url}${id}`);\n    const show = await response.json();\n    return show;\n  }\n}\n\n\n//# sourceURL=webpack://webpack-demo/./src/modules/homePage/fetchMovie.js?");
-
-/***/ }),
-
-/***/ "./src/modules/homePage/getLikes.js":
-/*!******************************************!*\
-  !*** ./src/modules/homePage/getLikes.js ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/';\nconst appID = 'MaaGbCwoyJNbaDzXocQW';\nconst appUrl = `${url}${appID}/likes`;\n\nconst getAllLikes = async () => {\n  const request = await fetch(appUrl);\n  const response = await request.json();\n  return response;\n};\n\nconst getFilteredLikes = async (movieID) => {\n  const allLikes = await getAllLikes();\n  const filteredLikes = await allLikes.filter(\n    (item) => item.item_id === movieID,\n  );\n  return filteredLikes[0].likes;\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getFilteredLikes);\n\n\n//# sourceURL=webpack://webpack-demo/./src/modules/homePage/getLikes.js?");
-
-/***/ }),
-
-/***/ "./src/modules/homePage/load-homepage.js":
-/*!***********************************************!*\
-  !*** ./src/modules/homePage/load-homepage.js ***!
-  \***********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _fetchMovie_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./fetchMovie.js */ \"./src/modules/homePage/fetchMovie.js\");\n/* harmony import */ var _postLike_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./postLike.js */ \"./src/modules/homePage/postLike.js\");\n/* harmony import */ var _CountItem_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CountItem.js */ \"./src/modules/homePage/CountItem.js\");\n/* harmony import */ var _CountItem_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_CountItem_js__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _reserve_load_reserve_pop_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../reserve/load-reserve-pop.js */ \"./src/modules/reserve/load-reserve-pop.js\");\n/* harmony import */ var _comment_popup_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../comment/popup.js */ \"./src/modules/comment/popup.js\");\n/* harmony import */ var _getLikes_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./getLikes.js */ \"./src/modules/homePage/getLikes.js\");\n\n\n\n\n\n\n\nconst show = new _fetchMovie_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\n\nconst cardContainer = document.getElementById('card-container');\n\nconst displayCards = async () => {\n  for (let id = 1; id < 7; id += 1) {\n    show.getShow(id).then(async (response) => {\n      const section = document.createElement('section');\n      _CountItem_js__WEBPACK_IMPORTED_MODULE_2___default()();\n      section.classList.add('items');\n      section.innerHTML += `\n      <div class=\"row-1\">\n        <img src=\"${response.image.medium}\" alt=\"movie posture\">\n      </div>\n      <div class=\"row-2\">\n        <h3 class=\"title-movie\">${response.name}</h3>\n        <p class=\"flex-col\">\n        <button class=\"heart\">\n          <i class=\"fa fa-heart heart-icon\" id=\"${response.id}\"></i>\n        </button><span class=like-count></span>likes\n        </p>\n      </div>\n      <div class=\"row-3 flex-col\" id=\"${response.id}\">\n        <button class=\"comment-btn\"  value=\"${response.id}\" onclick=\"window.location='#';\">Comment</button>\n        <button class=\"reserve-btn\" id=\"reserve-btn\">Reserve</button>\n        </div>`;\n      cardContainer.appendChild(section);\n    });\n  }\n  window.addEventListener('mouseover', async (e) => {\n    e.preventDefault();\n    if (e.target.classList.contains('row-2')) {\n      const movieID = e.target.children[1].children[0].children[0].id;\n      const counter = e.target.children[1].children[0].nextSibling;\n      const likes = await (0,_getLikes_js__WEBPACK_IMPORTED_MODULE_5__[\"default\"])(movieID);\n      counter.innerHTML = likes;\n    }\n  });\n};\n\ndocument.body.addEventListener('click', async (e) => {\n  if (e.target.parentElement.classList.contains('heart')) {\n    e.preventDefault();\n    await (0,_postLike_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(e.target.id);\n    const likeContainer = e.target.parentElement.parentElement.children[1];\n    const likes = await (0,_getLikes_js__WEBPACK_IMPORTED_MODULE_5__[\"default\"])(e.target.id);\n    likeContainer.innerText = likes;\n  }\n});\n\ndocument.body.addEventListener('click', async (e) => {\n  if (e.target.classList.contains('reserve-btn')) {\n    (0,_reserve_load_reserve_pop_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(e.target.parentElement.id);\n  }\n});\n// event listener for the comment button afer everything has been displayed\ndocument.body.addEventListener('click', (e) => {\n  if (e.target.classList.contains('comment-btn')) {\n    e.preventDefault();\n    (0,_comment_popup_js__WEBPACK_IMPORTED_MODULE_4__[\"default\"])(e.target.value);\n    show.getShow(e.target.value).then((response) => (0,_comment_popup_js__WEBPACK_IMPORTED_MODULE_4__[\"default\"])(response));\n  }\n});\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayCards);\n\n\n//# sourceURL=webpack://webpack-demo/./src/modules/homePage/load-homepage.js?");
-
-/***/ }),
-
-/***/ "./src/modules/homePage/postLike.js":
-/*!******************************************!*\
-  !*** ./src/modules/homePage/postLike.js ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/';\nconst appID = 'MaaGbCwoyJNbaDzXocQW';\nconst appUrl = `${url}${appID}/likes`;\n\nconst postLike = async (id, Likes) => {\n  const request = await fetch(appUrl, {\n    method: 'POST',\n    headers: {\n      'Content-type': 'application/json',\n    },\n    body: JSON.stringify({\n      item_id: id,\n      likes: Likes,\n    }),\n  });\n  const response = request;\n  return response;\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (postLike);\n\n//# sourceURL=webpack://webpack-demo/./src/modules/homePage/postLike.js?");
-
-/***/ }),
-
-/***/ "./src/modules/reserve/Postreserve.js":
-/*!********************************************!*\
-  !*** ./src/modules/reserve/Postreserve.js ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/';\nconst appID = 'sUHYcv06blVrKgUc2kUH';\nconst appUrl = `${url}${appID}/reservations/`;\n\nconst postReservation = async (id, name, dateStart, dateEnd) => {\n  const request = await fetch(appUrl, {\n    method: 'POST',\n    headers: {\n      'Content-type': 'application/json',\n    },\n    body: JSON.stringify({\n      item_id: id,\n      username: name,\n      date_start: dateStart,\n      date_end: dateEnd,\n    }),\n  });\n  const response = request;\n  return response;\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (postReservation);\n\n//# sourceURL=webpack://webpack-demo/./src/modules/reserve/Postreserve.js?");
-
-/***/ }),
-
-/***/ "./src/modules/reserve/countreserve.js":
-/*!*********************************************!*\
-  !*** ./src/modules/reserve/countreserve.js ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _getReserverations_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getReserverations.js */ \"./src/modules/reserve/getReserverations.js\");\n\n\nconst countReserve = async (id) => {\n  const totalItems = document.getElementById('reserve-counter');\n  const request = await (0,_getReserverations_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(id);\n  const response = request.length;\n  totalItems.innerHTML = response;\n  return response;\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (countReserve);\n\n//# sourceURL=webpack://webpack-demo/./src/modules/reserve/countreserve.js?");
-
-/***/ }),
-
-/***/ "./src/modules/reserve/getReserverations.js":
-/*!**************************************************!*\
-  !*** ./src/modules/reserve/getReserverations.js ***!
-  \**************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst getReserverations = async (movieId) => {\n  const request = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/sUHYcv06blVrKgUc2kUH/reservations?item_id=${movieId}`);\n  const response = await request.json();\n  return response;\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getReserverations);\n\n//# sourceURL=webpack://webpack-demo/./src/modules/reserve/getReserverations.js?");
-
-/***/ }),
-
-/***/ "./src/modules/reserve/load-reserve-pop.js":
-/*!*************************************************!*\
-  !*** ./src/modules/reserve/load-reserve-pop.js ***!
-  \*************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _homePage_fetchMovie_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../homePage/fetchMovie.js */ \"./src/modules/homePage/fetchMovie.js\");\n/* harmony import */ var _Postreserve_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Postreserve.js */ \"./src/modules/reserve/Postreserve.js\");\n/* harmony import */ var _getReserverations_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getReserverations.js */ \"./src/modules/reserve/getReserverations.js\");\n/* harmony import */ var _countreserve_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./countreserve.js */ \"./src/modules/reserve/countreserve.js\");\n\n\n\n\n\nconst show = new _homePage_fetchMovie_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\nconst reservePopup = document.getElementById('reserve-container');\nconst mainPage = document.getElementById('main-page');\n\nconst renderReservePopup = async (showName) => {\n  mainPage.classList.replace('show', 'hide');\n  reservePopup.classList.replace('hide', 'show');\n  show.getShow(showName).then(async (response) => {\n    // get reservations\n    const reservations = await (0,_getReserverations_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(response.id);\n    reservations.forEach((reservation) => {\n      reservePopup.innerHTML += `\n  <div class=\"popup-reserve-page\">\n    <button class=\"close-popup\">x</button>\n    <img src=\"${response.image.medium}\" alt=\"${response.name}\">\n    <div class=\"detail-section\">\n      <h3 class=\"title\">${response.name}</h3>\n      <ul class=\"detail\">\n        <li class=\"detil-item\">Genre:${response.genres[0]}</li>\n        <li class=\"detil-item\">Premiered:${response.premiered}</li>\n        <li class=\"detil-item\">Rating:${response.rating.average}</li>\n        <li class=\"detil-item\">officialSite:${response.officialSite}</li>\n      </ul>\n    </div>\n    <div class=\"reservations\">\n      <h3 class=\"reservations-header\">Reservations\n        <span class=\"counter\"></span>\n      </h3>\n    <div class=\"reserve-histry\" id=\"${response.id}\">\n      <li><span>${reservation.date_start} - ${reservation.date_end} <span>${reservation.username}</li>\n    </div>\n    <div class=\"form-section\">\n    <h3 class=\"add-reserve\">Add a reservation</h3>\n    <form action=\"\" class=\"reserve-form\" id=\"${response.id}\">\n      <input type=\"text\" placeholder=\"your name\" id=\"name\">\n      <input type=\"date\" placeholder=\"start date\" id=\"start-date\">\n      <input type=\"date\" placeholder=\"End date\" class=\"end-date\">\n      <button type=\"submit\" class=\"form-submit\" id=\"${response.name}\">Reserve</button>\n    </form>\n  </div>\n  </div>\n  `;\n    });\n  });\n};\n\ndocument.body.addEventListener('click', (e) => {\n  if (e.target.classList.contains('close-popup')) {\n    const popupContainer = document.querySelectorAll('.popup-reserve-page');\n    if (popupContainer) {\n      popupContainer.forEach((e) => {\n        e.remove();\n      });\n    }\n  }\n});\n\ndocument.body.addEventListener('click', async (e) => {\n  if (e.target.classList.contains('form-submit')) {\n    e.preventDefault();\n    const form = document.querySelector('.reserve-form');\n    const itemId = e.target.parentElement.id;\n    const name = e.target.parentElement.children[0].value;\n    const dateStart = e.target.parentElement.children[1].value;\n    const dateEnd = e.target.parentElement.children[2].value;\n    await (0,_Postreserve_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(itemId, name, dateStart, dateEnd);\n    form.submit();\n    (0,_countreserve_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(itemId);\n  }\n});\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (renderReservePopup);\n\n//# sourceURL=webpack://webpack-demo/./src/modules/reserve/load-reserve-pop.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ printMe)\n/* harmony export */ });\nfunction printMe() {\n    console.log('I get called from print.js!');\n  }\n\n//# sourceURL=webpack://webpack-demo/./src/print.js?");
 
 /***/ })
 
@@ -264,7 +155,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -278,17 +169,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
+/******/ 	
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -301,7 +192,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -313,7 +204,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -325,12 +216,12 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			}
 /******/ 		})();
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -341,7 +232,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/node module decorator */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nmd = (module) => {
@@ -350,18 +241,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			return module;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/nonce */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nc = undefined;
 /******/ 	})();
-/******/
+/******/ 	
 /************************************************************************/
-/******/
+/******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
-/******/
+/******/ 	
 /******/ })()
 ;
