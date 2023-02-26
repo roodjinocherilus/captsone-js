@@ -1,5 +1,7 @@
 import postComment, { getComments } from './postComment.js';
 
+const CommentCount = require('./CommentCount.js');
+
 export const checkImage = (image) => { // eslint-disable-line
   if (image) {
     return image.original;
@@ -40,9 +42,7 @@ const showModal = (movie) => {
 
   // Get the comments for the movie
   getComments(movie.id).then((response) => {
-    let totalComments = 0;
     response.forEach((element) => {
-      totalComments += 1;
       const commentContainer = modal.querySelector('.comments');
       const comment = document.createElement('div');
       comment.classList.add('comment');
@@ -61,6 +61,7 @@ const showModal = (movie) => {
       }
     });
     // Get the total comment count and display it
+    const totalComments = CommentCount();
     const commentCountElement = modal.querySelector('.commentCounter');
     commentCountElement.textContent = `Total comments: ${totalComments}`;
   });
@@ -84,7 +85,6 @@ const showModal = (movie) => {
           <p>${element.comment}</p>
           `;
       commentContainer.appendChild(comment);
-      modal.querySelector('.commentCounter').textContent = `Total comments: ${comments.length}`;
     });
   });
 
