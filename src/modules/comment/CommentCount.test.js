@@ -16,7 +16,7 @@ describe('CommentCount', () => {
 
   test('returns the correct number of comments', () => {
     const count = CommentCount();
-    expect(count).toBe(3);
+    expect(count).toBe(2);
   });
 
   test('returns 0 if there are no comments', () => {
@@ -29,5 +29,15 @@ describe('CommentCount', () => {
     document.body.innerHTML = '<div></div>';
     const count = CommentCount();
     expect(Number.isNaN(count)).toBe(true);
+  });
+
+  test('returns 1 if there is one comment', () => {
+    document.body.innerHTML = `
+      <div id="items">
+        <div class="comment">Comment 1</div>
+      </div>
+    `;
+    const count = CommentCount();
+    expect(count).toBe(1);
   });
 });

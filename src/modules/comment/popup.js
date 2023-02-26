@@ -1,5 +1,6 @@
 import postComment, { getComments } from './postComment.js';
-import totalComments from './CommentCount.js';
+
+const CommentCount = require('./CommentCount.js');
 
 export const checkImage = (image) => { // eslint-disable-line
   if (image) {
@@ -45,10 +46,6 @@ const showModal = (movie) => {
       const commentContainer = modal.querySelector('.comments');
       const comment = document.createElement('div');
       comment.classList.add('comment');
-
-      const commentCount = modal.querySelector('.commentCounter');
-      commentCount.innerHTML = `Comments: ${totalComments()}`;
-
       comment.innerHTML = `
         <h3>${element.username}</h3>
           <p class="date">${element.creation_date}</p>
@@ -63,16 +60,13 @@ const showModal = (movie) => {
         modal.appendChild(comments);
       }
     });
+    // Get the total comment count and display it
+    const totalComments = CommentCount();
+    const commentCountElement = modal.querySelector('.commentCounter');
+    commentCountElement.textContent = `Total comments: ${totalComments}`;
   });
 
   const form = modal.querySelector('form');
-  // Add event listener to the form submit button
-  // form.addEventListener('submit', (event) => {
-  //   event.preventDefault();
-  //   const comment = form.querySelector('textarea').value;
-  //   postComment(movie.id, comment);
-  //   form.querySelector('textarea').value = '';
-  // });
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -81,8 +75,6 @@ const showModal = (movie) => {
     form.querySelector('textarea').value = '';
     const comments = await getComments(movie.id);
     const commentContainer = modal.querySelector('.comments');
-    const commentCount = modal.querySelector('.commentCounter');
-    commentCount.innerHTML = `Comments: ${totalComments()}`;
     commentContainer.innerHTML = '';
     comments.forEach((element) => {
       const comment = document.createElement('div');
