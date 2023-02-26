@@ -1,11 +1,7 @@
-import getReserverations from './getReserverations.js';
-
-const countReserve = async (id) => {
-  const totalItems = document.getElementById('reserve-counter');
-  const request = await getReserverations(id);
-  const response = request.length;
-  totalItems.innerHTML = response;
-  return response;
+const countReserve = () => {
+  const totalItems = document.getElementById('counter');
+  totalItems.innerHTML = document.querySelectorAll('.items').length + 1;
+  return Number(totalItems.innerHTML);
 };
 
-export default countReserve;
+module.exports = countReserve;
