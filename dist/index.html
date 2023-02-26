@@ -3,9 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wbpack Exercise</title>
-<script defer src="index.bundle.js"></script><script defer src="print.bundle.js"></script></head>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Movies</title>
+<script defer src="runtime.bundle.js"></script><script defer src="index.bundle.js"></script></head>
 <body>
-    <h1>Hello webpack!</h1>
+	I<article class="reserve-popup hide" id="reserve-container">
+		<p class="count-value">Total reservations : <span id="reserve-counter"></span></p>
+	  </article>
+
+		<article class="reserve-popup hide" id="reserve-container">
+
+			
+		  
+		</article>
+    <div class="container show" id="main-page">
+		  <header id="header">
+			  <nav>
+						<ul><li><a href="index.html"><span>Logo</span></a></li>
+								<li><a href="index.html">Home</a></li>
+								<li><a href="about.html">About</a></li>
+								<li><a href="contact.html">Contact</a></li>
+						</ul>
+        </nav>
+			</header>
+			<article  class="total-count">
+			  <p class="count-value">Total Movies : <span id="counter"></span></p>
+			</article>
+			<main id="main-section">
+        <div class="movie-grid" id="card-container"></div>
+		<div id="modal-container"></div>
+
+			</main>
+			<footer id="footer">
+			  <p class="footer-copyright">Created by
+				<a href="https://github.com/Eldonratzlaff" class="social-link">Eldon,</a>
+				<a href="https://github.com/FevenSeyfu" class="social-link">Feven &</a>
+				<a href="https://github.com/roodjinocherilus" class="social-link"> Roodjino </a>
+				<span class="copyright"> &copy; Copyright 2023</span>
+				</p>
+			</footer>
+		</div>
+		<script src="./modules/homePage/CountItem.js" type="modules"></script>
 </body>
 </html>
