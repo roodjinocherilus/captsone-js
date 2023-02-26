@@ -41,4 +41,3 @@ describe('CommentCount', () => {
     expect(count).toBe(1);
   });
 });
-

@@ -1,6 +1,6 @@
 import postComment, { getComments } from './postComment.js';
-// import totalComments from './CommentCount.js';
-const CommentCount = require('./CommentCount');
+
+const CommentCount = require('./CommentCount.js');
 
 export const checkImage = (image) => { // eslint-disable-line
   if (image) {
@@ -60,15 +60,13 @@ const showModal = (movie) => {
         modal.appendChild(comments);
       }
     });
- // Get the total comment count and display it
- const totalComments = CommentCount();
- const commentCountElement = modal.querySelector('.commentCounter');
- commentCountElement.textContent = `Total comments: ${totalComments}`;
-
+    // Get the total comment count and display it
+    const totalComments = CommentCount();
+    const commentCountElement = modal.querySelector('.commentCounter');
+    commentCountElement.textContent = `Total comments: ${totalComments}`;
   });
 
   const form = modal.querySelector('form');
-
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -114,7 +112,6 @@ const showModal = (movie) => {
   backdrop.addEventListener('click', () => {
     closeModal();
   });
-
 };
 
 export default showModal;
