@@ -12,7 +12,7 @@ const renderReservePopup = async (showName) => {
   reservePopup.classList.replace('hide', 'show');
   show.getShow(showName).then(async (response) => {
     // get reservations
-    countReserve(response.id);
+    // countReserve(response.id);
     const reservations = await getReserverations(response.id);
     reservations.forEach((reservation) => {
       reservePopup.innerHTML += `
@@ -71,6 +71,7 @@ document.body.addEventListener('click', async (e) => {
     const dateEnd = e.target.parentElement.children[2].value;
     await postReservation(itemId, name, dateStart, dateEnd);
     form.submit();
+    countReserve(itemId);
   }
 });
 
