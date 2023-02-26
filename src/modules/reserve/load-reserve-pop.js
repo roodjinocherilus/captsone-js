@@ -7,7 +7,7 @@ const show = new ShowDetail();
 const reservePopup = document.getElementById('reserve-container');
 const mainPage = document.getElementById('main-page');
 
-const renderReservePopup = (showName) => {
+const renderReservePopup = async (showName) => {
   mainPage.classList.replace('show', 'hide');
   reservePopup.classList.replace('hide', 'show');
   show.getShow(showName).then(async (response) => {
