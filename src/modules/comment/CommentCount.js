@@ -1,7 +1,13 @@
 const CommentCount = () => {
   const totalComments = document.getElementById('items');
-  totalComments.innerHTML = document.querySelectorAll('.comment').length + 1;
-  return Number(totalComments.innerHTML);
+  if (!totalComments) {
+    return NaN;
+  }
+  const comments = totalComments.querySelectorAll('.comment');
+  if (comments.length === 0) {
+    return 0;
+  }
+  return comments.length;
 };
 
 module.exports = CommentCount;

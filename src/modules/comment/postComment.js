@@ -18,19 +18,6 @@ const postComment = async (id, Comments) => {
   return response;
 };
 
-// export const getComments = async (id) => {
-//   const getUrl = `${url}${appID}/comments?item_id=${id}`;
-//   const request = await fetch(getUrl, {
-//     method: 'GET',
-//     headers: {
-//       'Content-type': 'application/json',
-//     },
-
-//   });
-//   const result = await request.json();
-//   return result;
-// };
-
 export const getComments = async (id) => {
   const getUrl = `${url}${appID}/comments?item_id=${id}`;
   const request = await fetch(getUrl, {
